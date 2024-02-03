@@ -1,0 +1,55 @@
+<div class="custom-container">
+  <div class="custom-dropdown" *ngIf="objects$ | async as objects">
+    <h4>Select Object:</h4>
+    <select [(ngModel)]="selectedObject" (change)="updateFieldList()">
+      <option *ngFor="let obj of objects" [value]="obj">{{ obj }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="(fieldList$ | async)" class="custom-scrollable-fields">
+    <label *ngFor="let field of (fields$ | async)">
+      <input
+        type="checkbox"
+        [checked]="selectedFields[field]"
+        (change)="updateSelectedFields(field)"
+      />
+      {{ field }}
+    </label>
+  </div>
+  
+  <div
+    *ngIf="selectedObject && selectedFieldsArray.length >= 1"
+    class="custom-selected-fields-bar"
+  >
+    <h4>Selected Fields:</h4>
+    <div class="custom-selected-fields">
+      <span *ngFor="let field of selectedFieldsArray" class="custom-selected-field">
+        {{ field }}
+        <span class="custom-remove-field" (click)="removeSelectedField(field)">x</span>
+      </span>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="custom-get-data-button"
+    (click)="executeQuery()"
+    *ngIf="selectedFieldsArray.length >= 1"
+  >
+    Fetch Data
+  </button>
+ 
+
+  <div *ngIf="!isEditOpen && (results$ | async)" class="custom-query-result-container">
+    <app-result
+      [query_res]="results$ | async"
+      [selectedFieldsArray]="selectedFieldsArray"
+      [selectedObject]="selectedObject"
+      (editStatusChange)="isEditOpen = $event"
+    ></app-result>
+  </div>
+
+  <div *ngIf="isEditOpen">
+    <app-edit (editStatusChange)="onIsEditOpenChange($event)"></app-edit>
+  </div>
+</div>

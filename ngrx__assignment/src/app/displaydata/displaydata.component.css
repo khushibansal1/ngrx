@@ -1,0 +1,60 @@
+.custom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  border: 2px solid #ddd; 
+  padding: 15px; }
+
+.custom-dropdown {
+  margin-bottom: 20px;
+}
+
+.custom-scrollable-fields {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.custom-selected-fields-bar {
+  margin-top: 20px;
+}
+
+.custom-selected-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-selected-field {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-remove-field {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.custom-get-data-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+}
+
+.custom-query-result-container {
+  margin-top: 20px;
+}
